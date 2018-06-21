@@ -1,4 +1,4 @@
-# PDI
+#PDI
 
 Projetos desenvolvidos para a disciplina de Processamento Digital de Imagens
 
