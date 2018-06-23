@@ -6,18 +6,25 @@
 using namespace cv;
 using namespace std;
 
-int main(int, char**) {
-    Mat image;
+int main(int argc, char** argv) {
+    Mat origin, negative;
     Vec2i p1, p2;
+    int row, col;
     
     //abre a imagem que se deseja trabalhar
-    image =imread("biel.png", CV_LOAD_IMAGE_GRAYSCALE);
-    if(!image.data)
+    origin =imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
+    if(!origin.data)
         cout << "não foi possivel abrir a imagem\n";
     
     //nomeia a janela de exibição e a coloca para assumir as dimensões da imagem
-    namedWindow("janela", WINDOW_AUTOSIZE);
-    
+    namedWindow("Original", WINDOW_AUTOSIZE);
+    namedWindow("Região negativa", WINDOW_AUTOSIZE);
+
+    row = origin.rows;
+    col = origin.cols;
+
+    origin.copyTo(negative);
+        
     //leitura dos pontos
     while(1){
         cout << "informe as coordenadas do ponto 1!\n";
@@ -26,7 +33,7 @@ int main(int, char**) {
         cout << "informe as coordenadas do ponto 2!\n";        
         cin >> p2[0] >> p2[1];
 
-        if (p1[0]<0||p1[0]>256||p1[1]<0||p1[1]>256||p2[0]<0||p2[0]>256||p2[1]<0||p2[1]>256)
+        if (p1[0]<0||p1[0]>row||p1[1]<0||p1[1]>col||p2[0]<0||p2[0]>row||p2[1]<0||p2[1]>col)
             cout << "pontos invalidos, informe novamente!\n";
         else 
             break;
@@ -35,11 +42,13 @@ int main(int, char**) {
     //aqui fazemos o negativo da imagem
     for(int i=p1[0];i<p1[1];i++){
         for(int j=p2[0];j<p2[1];j++)
-            image.at<uchar>(i,j)=255-image.at<uchar>(i,j);        
+            negative.at<uchar>(i,j)=255-negative.at<uchar>(i,j);        
     }
 
     //imprime a imagem numa janela na tela
-    imshow("janela", image);
+    imshow("Original", origin);
+    waitKey();
+    imshow("Região negativa", negative);
     waitKey();
 
     return 0;
