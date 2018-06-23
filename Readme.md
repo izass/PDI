@@ -1,7 +1,7 @@
 # PDI
 
-Projetos desenvolvidos para a disciplina de Processamento Digital de Imagens
+Projetos desenvolvidos para a disciplina de Processamento Digital de Imagens, utilizando a linguagem c++ e a ferramenta OpenCV
 
-por enquanto apenas os exemplos da sessão 1 e 2 adicionados.
+Exemplos da sessão 1 e 2 adicionados.
 
-Tutorial utilizado: [PDI](https://agostinhobritojr.github.io/tutorial/pdi/)
+Tutorial utilizado: https://agostinhobritojr.github.io/tutorial/pdi/
